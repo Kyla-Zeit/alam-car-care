@@ -63,11 +63,11 @@ export function Header() {
           {/* CTA Buttons */}
           <div className="hidden items-center gap-3 md:flex">
             <a
-              href="tel:+1234567890"
+              href="tel:+4379852153"
               className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               <Phone className="h-4 w-4" />
-              <span>(123) 456-7890</span>
+              <span>(437) 437-2153</span>
             </a>
             <Button size="sm" className="bg-accent hover:bg-accent/90">
               Book Now
