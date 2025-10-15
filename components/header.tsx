@@ -67,7 +67,7 @@ export function Header() {
               className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               <Phone className="h-4 w-4" />
-              <span>(437) 437-2153</span>
+              <span>(437) 985-2153</span>
             </a>
             <Button size="sm" className="bg-accent hover:bg-accent/90">
               Book Now

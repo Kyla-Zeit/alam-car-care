@@ -82,8 +82,8 @@ export function Footer() {
               <li>123 Main Street</li>
               <li>Beaverville, ON</li>
               <li>
-                <a href="tel:+1234567890" className="hover:text-accent transition-colors">
-                  (123) 456-7890
+                <a href="tel:+4379852153" className="hover:text-accent transition-colors">
+                  (437) 985-2153
                 </a>
               </li>
               <li>
