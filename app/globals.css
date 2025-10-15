@@ -139,4 +139,29 @@
   body {
     @apply bg-background text-foreground;
   }
+    /* Hand cursor for anything clickable */
+  button,
+  [type="button"],
+  [type="submit"],
+  [type="reset"],
+  a[href],
+  a[role="button"],
+  label[for],
+  summary,
+  select,
+  [role="button"],
+  [onclick],
+  [data-clickable] {
+    cursor: pointer;
+  }
+
+  /* Honest disabled states */
+  button:disabled,
+  [aria-disabled="true"],
+  .disabled {
+    cursor: not-allowed;
+  }
+
+  /* Prevent anchored sections from hiding under the fixed header */
+  section[id] { scroll-margin-top: 5.5rem; }
 }
