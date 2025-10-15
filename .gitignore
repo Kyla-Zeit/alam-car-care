@@ -1,0 +1,4 @@
+# Ignore Next.js build output and static export directory
+.next
+out
+node_modules
