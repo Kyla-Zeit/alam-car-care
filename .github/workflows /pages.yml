@@ -1,0 +1,82 @@
+name: Deploy to GitHub Pages
+
+# Trigger the workflow on pushes to the main branch or manual dispatches.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Grant the workflow the minimum required permissions to publish to GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Ensure that only one deployment runs at a time.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository content.
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install Node.js without caching (pnpm isn't available yet).
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Install pnpm using the version declared in package.json's `packageManager` field.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      # Compute the pnpm store directory. This step must run after pnpm is installed.
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> "$GITHUB_OUTPUT"
+
+      # Restore cached dependencies based on the pnpm store path and lockfile hash.
+      - name: Restore pnpm store from cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # Install project dependencies using the lockfile to ensure reproducible installs.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Build the Next.js project. Because `output: 'export'` is set in next.config.mjs, this produces a static site in the `out` directory.
+      - name: Build website
+        run: pnpm build
+
+      # Setup GitHub Pages deployment settings.
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Upload the static site files from the `out` directory as an artifact for deployment.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Deploy the uploaded artifact to GitHub Pages.
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
