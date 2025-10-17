@@ -71,7 +71,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-semibold text-foreground">Location</h3>
-                    <p className="text-muted-foreground">123 Main Street, Beaverville, ON</p>
+                    <p className="text-muted-foreground"> 4468 Ontario St, Lincoln, ON</p>
                   </div>
                 </div>
               </CardContent>
@@ -86,7 +86,7 @@ export function Contact() {
                   <div>
                     <h3 className="mb-1 font-semibold text-foreground">Phone</h3>
                     <a href="tel:+1234567890" className="text-muted-foreground hover:text-accent transition-colors">
-                      (123) 456-7890
+                      (437) 985-2153
                     </a>
                   </div>
                 </div>
