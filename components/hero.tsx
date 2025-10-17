@@ -19,7 +19,7 @@ export function Hero() {
           {/* Badge */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm font-medium text-primary-foreground backdrop-blur">
             <Star className="h-4 w-4 fill-current" />
-            <span>Beaverville's #1 Rated Car Care Centre</span>
+            <span>Niagara's #1 Rated Car Care Centre</span>
           </div>
 
           {/* Heading */}
