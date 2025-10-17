@@ -79,8 +79,8 @@ export function Footer() {
           <div>
             <h3 className="mb-4 font-semibold text-foreground">Contact</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>123 Main Street</li>
-              <li>Beaverville, ON</li>
+              <li> 4468 Ontario Street</li>
+              <li>Lincoln, ON</li>
               <li>
                 <a href="tel:+4379852153" className="hover:text-accent transition-colors">
                   (437) 985-2153
